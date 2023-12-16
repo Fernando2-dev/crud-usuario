@@ -3,7 +3,7 @@ package fernandoSilva.crudusuario.modules.usersModel.useCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import fernandoSilva.crudusuario.Execption.UserNotFoundExecption;
+import fernandoSilva.crudusuario.execption.UserNotFoundExecption;
 import fernandoSilva.crudusuario.modules.usersModel.UsersModel;
 import fernandoSilva.crudusuario.modules.usersModel.UsersRepository;
 
