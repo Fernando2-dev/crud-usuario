@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import fernandoSilva.crudusuario.execption.UserNotFoundExecption;
 import fernandoSilva.crudusuario.modules.usersModel.UsersRepository;
-import fernandoSilva.crudusuario.modules.usersModel.dto.UserModelDto;
+import fernandoSilva.crudusuario.modules.usersModel.dto.UsersModelDto;
 
 @Service
 public class UsersListagemUseCase {
@@ -14,13 +14,13 @@ public class UsersListagemUseCase {
     private UsersRepository UsersRepository;
 
 
-    public UserModelDto execute(Long id) {
+    public UsersModelDto execute(Long id) {
       var usuario = this.UsersRepository.findById(id)
       .orElseThrow(() -> {
         throw new UserNotFoundExecption("id não encontrado");
       });
 
-      var userModel = UserModelDto.builder()
+      var userModel = UsersModelDto.builder()
       .id(usuario.getId())
       .nome(usuario.getNome())
       .email(usuario.getEmail())

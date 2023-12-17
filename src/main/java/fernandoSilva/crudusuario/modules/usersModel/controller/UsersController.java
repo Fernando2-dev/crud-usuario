@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fernandoSilva.crudusuario.modules.usersModel.UsersModel;
 import fernandoSilva.crudusuario.modules.usersModel.UsersRepository;
+import fernandoSilva.crudusuario.modules.usersModel.dto.UsersModelDtoListagem;
 import fernandoSilva.crudusuario.modules.usersModel.useCase.UsersAtualizacaoUseCase;
 import fernandoSilva.crudusuario.modules.usersModel.useCase.UsersCadastroUseCase;
 import fernandoSilva.crudusuario.modules.usersModel.useCase.UsersListagemUseCase;
@@ -46,9 +47,9 @@ public class UsersController {
    }
 
    @PutMapping
-   public ResponseEntity<Object> atualizacao(@RequestBody UsersModel UsersModel) {
+   public ResponseEntity<Object> atualizacao(@RequestBody UsersModelDtoListagem usersModelDtoListagem) {
       try {
-         var usuario = this.usersAtualizacaoUseCase.execute(UsersModel);
+         var usuario = this.usersAtualizacaoUseCase.execute(usersModelDtoListagem);
          return ResponseEntity.ok().body(usuario);
       } catch (Exception e) {
          return ResponseEntity.badRequest().body(e.getMessage());

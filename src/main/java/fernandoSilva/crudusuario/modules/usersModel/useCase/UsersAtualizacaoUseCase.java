@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import fernandoSilva.crudusuario.execption.UserNotFoundExecption;
 import fernandoSilva.crudusuario.modules.usersModel.UsersModel;
 import fernandoSilva.crudusuario.modules.usersModel.UsersRepository;
+import fernandoSilva.crudusuario.modules.usersModel.dto.UsersModelDtoListagem;
 
 @Service
 public class UsersAtualizacaoUseCase {
@@ -13,22 +14,14 @@ public class UsersAtualizacaoUseCase {
     @Autowired
     private UsersRepository usersRepository;
 
-    public UsersModel execute(UsersModel usersModel) {
-        var usuario = this.usersRepository.findById(usersModel.getId())
+    public UsersModel execute(UsersModelDtoListagem usersModelDtoListagem) {
+        var usuario = this.usersRepository.findById(usersModelDtoListagem.id())
                 .orElseThrow(() -> {
                     throw new UserNotFoundExecption("id não encontrado, por favor, digite um id válido");
                 });
-        if (usersModel.getNome() != null) {
-            usuario.setNome(usersModel.getNome());
-        }
-        if (usersModel.getEmail() != null) {
-            usuario.setEmail(usersModel.getEmail());
-        }
-        if (usersModel.getProfissao() != null) {
-            usuario.setProfissao(usersModel.getProfissao());
-        }
+       usuario.atualizar(usersModelDtoListagem);
+       return this.usersRepository.save(usuario);
 
-        return usuario;
     }
 
 }

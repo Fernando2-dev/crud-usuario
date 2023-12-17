@@ -1,5 +1,6 @@
 package fernandoSilva.crudusuario.modules.usersModel;
 
+import fernandoSilva.crudusuario.modules.usersModel.dto.UsersModelDtoListagem;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -32,4 +33,16 @@ public class UsersModel {
 
      @NotBlank
      private String profissao;
+
+     public void atualizar(UsersModelDtoListagem usersModelDtoListagem){
+          if (usersModelDtoListagem.nome() != null) {
+               this.setNome(usersModelDtoListagem.nome());
+           }
+           if (usersModelDtoListagem.email() != null) {
+               this.setEmail(usersModelDtoListagem.email());
+           }
+           if (usersModelDtoListagem.profissao() != null) {
+               this.setProfissao(usersModelDtoListagem.profissao());
+           }
+     }
 } 

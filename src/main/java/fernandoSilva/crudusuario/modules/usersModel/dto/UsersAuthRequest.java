@@ -6,12 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Data
-public class UserModelDto{
-     private Long id;
-     private String nome;
-     private String email;
-     private String profissao;
+@NoArgsConstructor
+@AllArgsConstructor
+public class UsersAuthRequest {
+    private String nome;
+    private String senha;
 }
