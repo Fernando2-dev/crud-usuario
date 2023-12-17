@@ -26,7 +26,7 @@ public class UsersAuthController {
           var auth = this.usersAuthUseCase.execute(usersAuthRequest);
           return ResponseEntity.ok().body(auth);
        } catch (Exception e) {
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-       }
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+    }
     }
 }

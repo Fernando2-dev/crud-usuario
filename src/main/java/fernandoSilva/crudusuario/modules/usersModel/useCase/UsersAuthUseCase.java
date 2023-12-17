@@ -32,15 +32,15 @@ public class UsersAuthUseCase {
                     throw new UsernameNotFoundException("Nome ou senha incorretos");
                 });
 
-        var senha = this.passwordEncoder.matches(usersAuthRequest.getSenha(), usuario.getSenha());
-
-        if (!senha) {
+        var password = this.passwordEncoder.matches(usersAuthRequest.getSenha(), usuario.getSenha());
+       
+        if (!password) {
             throw new AuthenticationException();
         }
 
         Algorithm algoritimo = Algorithm.HMAC256("JAVA_USUARIO_123");
         var duracao = Instant.now().plus(Duration.ofHours(2));
-        var token = JWT.create().withIssuer("javagas")
+        var token = JWT.create().withIssuer("javausuario")
                 .withExpiresAt(duracao)
                 .withSubject(usuario.getId().toString())
                 .sign(algoritimo);
